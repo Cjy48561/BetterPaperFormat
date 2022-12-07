@@ -8,7 +8,7 @@ class TitlePage:
 
     def Save_TitlePage(self,Title_Name,Institution_Name,Class_Name,Student_Name,Student_Number,Guide_Teacher,DT_1,DT_2,DT_3,year,month):
         # 加载模板文件
-        tpl=DocxTemplate("D:\\Python Project\\Better Paper Format\\Standard Document\\Title Page.docx")
+        tpl=DocxTemplate(".\\Standard Document\\Title Page.docx")
         # 渲染主体
         context={'TitleName':Title_Name,
                  'InstitutionName':Institution_Name,
@@ -23,4 +23,4 @@ class TitlePage:
         tpl.render(context)
         # 提示信息and保存文件
         print("标题页已生成...")
-        tpl.save("D:\\Python Project\\Better Paper Format\\Generate document\\Title Page.docx")
+        tpl.save(".\\Generate document\\Title Page.docx")
