@@ -7,6 +7,7 @@ from docxtpl import DocxTemplate
 # 加载模板文件
 class Abstract:
         def Save_Abstract(self,content1,content2,content3,key1,key2,key3,key4,key5):
+                L=[content1,content2,content3,key1,key2,key3,key4,key5]
                 tpl=DocxTemplate(".\\Standard Document\\Abstract-Chinese.docx")
                 # 渲染主体
                 context={
@@ -24,3 +25,4 @@ class Abstract:
                 # 提示信息and保存文件
                 print("中文摘要页已生成...")
                 tpl.save(".\\Generate document\\Abstract-Chinese.docx")
+                return L

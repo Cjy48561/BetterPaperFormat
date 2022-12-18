@@ -2,27 +2,34 @@
 # @Author : yunwenwu
 # @Time : 2022/12/7 17:50
 # 英文摘要页
+import time
+
 import requests
 import random
 from hashlib import md5
 from docxtpl import DocxTemplate
+from Abstract import Abstract
+
 class AbstractFy:
-    def fyA(self,appid='20221215001498326',appkey='mLoRTUdahi5oJE6XiQQi'):
+
+    def fyA(self,content1,content2,content3,
+        key1,key2,key3,key4,key5,
+        appid='20221215001498326',appkey='mLoRTUdahi5oJE6XiQQi'):
+        Abst=Abstract()
         url = 'http://api.fanyi.baidu.com/api/trans/vip/translate'
         L=[]
-        for i in range(1,9):
-            query = input("请输入要翻译的内容")
-
+        for i in Abst.Save_Abstract(content1,content2,content3,
+        key1,key2,key3,key4,key5):
             # 函数
             def make_md5(s, encoding='utf-8'):
                 return md5(s.encode(encoding)).hexdigest()
 
             salt = random.randint(32768, 65536)
-            sign = make_md5(appid + query + str(salt) + appkey)
+            sign = make_md5(appid + i + str(salt) + appkey)
 
             #构建请求
             headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-            payload = {'appid': appid, 'q': query, 'from': 'zh', 'to': 'en', 'salt': salt, 'sign': sign}
+            payload = {'appid': appid, 'q': i, 'from': 'zh', 'to': 'en', 'salt': salt, 'sign': sign}
 
             # 发送请求
             r = requests.post(url, params=payload, headers=headers)
@@ -33,6 +40,7 @@ class AbstractFy:
             r_3 = r_2[0]
             r_4 = r_3["dst"]
             L.append(r_4)
+            time.sleep(10)
 
         print(L)
         #输出到模板文件
@@ -53,7 +61,3 @@ class AbstractFy:
         # 提示信息and保存文件
         print("Abstract页已生成...")
         tpl.save(".\\Generate document\\Abstract.docx")
-
-if __name__=="__main__":
-    a=AbstractFy()
-    a.fyA()
