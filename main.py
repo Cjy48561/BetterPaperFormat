@@ -1,3 +1,5 @@
+# 如何实现可视化以及相关界面设计？
+# 如何实现应用内实时预览docx文档
 # 利用python与office实现更好的论文格式
 # Using python and office to realize better paper format
 from TitlePage import TitlePage
@@ -35,6 +37,3 @@ if __name__=='__main__':
                 key1=key1,key2=key2,key3=key3,key4=key4,key5=key5)
 
 
-
-
-# 如何实现获取中文摘要页产生的多个值并循环输入下一个函数
